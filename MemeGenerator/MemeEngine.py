@@ -12,6 +12,9 @@ class MemeEngine():
 
     param output_dir: image output directory
     """
+    if not os.path.isdir(output_dir):
+    	os.makedirs(output_dir)
+    
     self.output_dir = output_dir
 
   def make_meme(self, img_path, text, author, width=500) -> str: # generated image path
@@ -30,7 +33,7 @@ class MemeEngine():
     draw.text((10,30), text, font=font, fill="red")
     draw.text((10,70), author, font=font, fill="green")
 
-    output_path = f"./{self.output_dir}/{random.randint(0, 1000000)}.jpg"
+    output_path = f"{self.output_dir}/{random.randint(0, 1000000)}.jpg"
     img.save(output_path)
     
     return output_path
